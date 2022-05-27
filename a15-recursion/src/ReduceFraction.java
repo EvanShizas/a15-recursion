@@ -1,7 +1,7 @@
 /**
  * Calculates and reduces a given fraction to its lowest terms.
  * 
- * modified     20220524
+ * modified     20220527
  * date         20220524
  * @filename    ReduceFraction.java
  * @author      Alvin Chan, Evan Shizas
@@ -119,7 +119,28 @@ public class ReduceFraction extends JFrame {
 		dialogBox.setColumns(10);
 	}
 
+	int gcd(int a, int b) {
+		if (b == 0) {
+			return a;
+		} else {
+			return gcd(b, a % b);
+		}
+	}
+	
 	private void calculateActionPerformed(java.awt.event.ActionEvent evt) {
-
+		int nu = (Integer) numeratorSelect.getValue();
+		int de = (Integer) denominatorSelect.getValue();
+		int nuReduced = nu;
+		int deReduced = de;
+		
+		int factor = gcd(nu, de);
+		nuReduced /= factor;
+		deReduced /= factor;
+		
+		if (deReduced == 1) {
+			System.out.println(nu + "/" + de + " in lowest terms is " + nuReduced);
+		} else {
+			System.out.println(nu + "/" + de + " in lowest terms is " + nuReduced + "/" + deReduced);
+		}
 	}
 }

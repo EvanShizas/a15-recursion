@@ -17,6 +17,8 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.util.ArrayList;
+
 import javax.swing.SwingConstants;
 import javax.swing.JTextArea;
 import javax.swing.JSpinner;
@@ -104,7 +106,31 @@ public class Fibonacci extends JFrame {
 		dialogBox.setColumns(10);
 	}
 	
-	private void calculateActionPerformed(java.awt.event.ActionEvent evt) {
+	void fibber(ArrayList<Integer> fib, int x, int n) {
+		fib.add(fib.get(x-1) + fib.get(x-2));
+		x++;
 		
+		if (x < n) {
+			fibber(fib, x, n);
+		}
+	}
+	
+	private void calculateActionPerformed(java.awt.event.ActionEvent evt) {
+		int n = (Integer) termSelect.getValue();;
+		int x = 0;
+		int sum = 0;
+		ArrayList<Integer> fib = new ArrayList<Integer>();
+		
+		fib.add(1);
+		x++;
+		fib.add(1);
+		x++;
+		
+		fibber(fib, x, n);
+		
+		dialogBox.setText(fib.get(n - 1).toString());
+		
+		// remove 0 from descrip
+		// greater than 48 is broken af
 	}
 }
