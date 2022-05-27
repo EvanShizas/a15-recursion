@@ -1,7 +1,7 @@
 /**
  * Lists fibonacci number term based on user selection.
  * 
- * modified     20220524
+ * modified     20220527
  * date         20220524
  * @filename    Fibonacci.java
  * @author      Alvin Chan, Evan Shizas
@@ -66,9 +66,9 @@ public class Fibonacci extends JFrame {
 		title.setBounds(0, 0, 475, 40);
 		contentPane.add(title);
 		
-		JLabel enterHereLbl = new JLabel("Enter the fibonacci term that you would like to see: ");
+		JLabel enterHereLbl = new JLabel("Enter the fibonacci term that you would like to see: (0 - 46)");
 		enterHereLbl.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		enterHereLbl.setBounds(10, 112, 310, 22);
+		enterHereLbl.setBounds(10, 112, 367, 22);
 		contentPane.add(enterHereLbl);
 		
 		JTextArea fibInfo = new JTextArea();
@@ -82,10 +82,10 @@ public class Fibonacci extends JFrame {
 		contentPane.add(fibInfo);
 		
 		termSelect = new JSpinner();
-		termSelect.setModel(new SpinnerNumberModel(new Integer(0), null, null, new Integer(1)));
+		termSelect.setModel(new SpinnerNumberModel(0, 0, 46, 1));
 		termSelect.setForeground(Color.WHITE);
 		termSelect.setBackground(Color.WHITE);
-		termSelect.setBounds(318, 112, 147, 22);
+		termSelect.setBounds(374, 112, 91, 22);
 		contentPane.add(termSelect);
 		
 		calculate = new JButton("Find the Fibonacci Number");
@@ -116,9 +116,7 @@ public class Fibonacci extends JFrame {
 	}
 	
 	private void calculateActionPerformed(java.awt.event.ActionEvent evt) {
-		int n = (Integer) termSelect.getValue();;
-		int x = 0;
-		int sum = 0;
+		int n = (Integer) termSelect.getValue(), x = 0;
 		ArrayList<Integer> fib = new ArrayList<Integer>();
 		
 		fib.add(1);
@@ -127,10 +125,6 @@ public class Fibonacci extends JFrame {
 		x++;
 		
 		fibber(fib, x, n);
-		
-		dialogBox.setText(fib.get(n - 1).toString());
-		
-		// remove 0 from descrip
-		// greater than 48 is broken af
+		dialogBox.setText("Fibonacci number " + n + " is " + fib.get(n - 1).toString() + "!");
 	}
 }
