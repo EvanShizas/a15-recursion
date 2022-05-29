@@ -89,13 +89,14 @@ public class ReduceFraction extends JFrame {
 		contentPane.add(reducerInfo);
 
 		numeratorSelect = new JSpinner();
-		numeratorSelect.setModel(new SpinnerNumberModel(new Integer(0), null, null, new Integer(1)));
+		numeratorSelect.setModel(new SpinnerNumberModel(0, -1000000000, 1000000000, 1));
 		numeratorSelect.setForeground(Color.WHITE);
 		numeratorSelect.setBackground(Color.WHITE);
 		numeratorSelect.setBounds(318, 112, 147, 22);
 		contentPane.add(numeratorSelect);
 
 		denominatorSelect = new JSpinner();
+		denominatorSelect.setModel(new SpinnerNumberModel(0, -1000000000, 1000000000, 1));
 		denominatorSelect.setForeground(Color.WHITE);
 		denominatorSelect.setBackground(Color.WHITE);
 		denominatorSelect.setBounds(318, 147, 147, 22);
@@ -118,29 +119,41 @@ public class ReduceFraction extends JFrame {
 		contentPane.add(dialogBox);
 		dialogBox.setColumns(10);
 	}
-
-	int gcd(int a, int b) {
-		if (b == 0) {
-			return a;
-		} else {
-			return gcd(b, a % b);
-		}
-	}
 	
 	private void calculateActionPerformed(java.awt.event.ActionEvent evt) {
-		int nu = (Integer) numeratorSelect.getValue();
-		int de = (Integer) denominatorSelect.getValue();
-		int nuReduced = nu;
-		int deReduced = de;
-		
+		int nu = (Integer) numeratorSelect.getValue(), de = (Integer) denominatorSelect.getValue(), nuReduced = nu, deReduced = de;
 		int factor = gcd(nu, de);
+		
 		nuReduced /= factor;
 		deReduced /= factor;
 		
-		if (deReduced == 1) {
-			System.out.println(nu + "/" + de + " in lowest terms is " + nuReduced);
-		} else {
-			System.out.println(nu + "/" + de + " in lowest terms is " + nuReduced + "/" + deReduced);
+		if (deReduced == 1 || nuReduced == 0) {
+			dialogBox.setText(nu + "/" + de + " in lowest terms is " + nuReduced + "!");
+		} 
+		
+		else if (deReduced < 0 && nuReduced > 0) {
+			dialogBox.setText(nu + "/" + de + " in lowest terms is " + (-1)*nuReduced + "/" + (-1)*deReduced + "!");
+		}
+		
+		else {
+			dialogBox.setText(nu + "/" + de + " in lowest terms is " + nuReduced + "/" + deReduced + "!");
+		}
+		
+		if (de == 0 && nu != 0)
+			dialogBox.setText("DENOMINATOR CANNOT BE 0! TRY AGAIN!");
+	}
+	
+	public int gcd(int a, int b) {
+		if (b == 0 && a != 0) {
+			return a;
+		}
+		
+		else if (a == 0) {
+			return 1; // Prevents divide by zero!
+		}
+
+		else {
+			return gcd(b, a % b);
 		}
 	}
 }
