@@ -32,6 +32,8 @@ public class Fibonacci extends JFrame {
 	private JTextField dialogBox;
 	private JButton calculate;
 	private JSpinner termSelect;
+	
+	int p = 0;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -106,18 +108,10 @@ public class Fibonacci extends JFrame {
 		dialogBox.setColumns(10);
 	}
 	
-	void fibber(ArrayList<Integer> fib, int x, int n) {
-		fib.add(fib.get(x-1) + fib.get(x-2));
-		x++;
-		
-		if (x < n) {
-			fibber(fib, x, n);
-		}
-	}
-	
 	private void calculateActionPerformed(java.awt.event.ActionEvent evt) {
 		int n = (Integer) termSelect.getValue(), x = 0;
 		ArrayList<Integer> fib = new ArrayList<Integer>();
+		p = 0;
 		
 		fib.add(1);
 		x++;
@@ -125,6 +119,24 @@ public class Fibonacci extends JFrame {
 		x++;
 		
 		fibber(fib, x, n);
-		dialogBox.setText("Fibonacci number " + n + " is " + fib.get(n - 1).toString() + "!");
+		dialogBox.setText("Fibonacci number " + n + " is " + fib.get(p - 1).toString() + "!");
+	}
+	
+	public void fibber(ArrayList<Integer> fib, int x, int n) {
+		if (n != 0) {
+			fib.add(fib.get(x-1) + fib.get(x-2));
+			p = n;
+			x++;
+		}
+		
+		else {
+			fib.clear();
+			fib.add(0);
+			p++;
+		}
+		
+		if (x < n) {
+			fibber(fib, x, n);
+		}
 	}
 }
