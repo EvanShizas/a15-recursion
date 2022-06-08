@@ -4,7 +4,8 @@
  * modified     20220527
  * date         20220524
  * @filename    ReduceFraction.java
- * @author      Alvin Chan, Evan Shizas
+ * @author      Alvin Chan
+ * @author      Evan Shizas
  * @version     1.0.0
  * @see         A15 - Recursion
  */
@@ -139,7 +140,7 @@ public class ReduceFraction extends JFrame {
 			dialogBox.setText(nu + "/" + de + " in lowest terms is " + nuReduced + "/" + deReduced + "!");
 		}
 		
-		if (de == 0 && nu != 0)
+		if (de == 0)
 			dialogBox.setText("DENOMINATOR CANNOT BE 0! TRY AGAIN!");
 	}
 	

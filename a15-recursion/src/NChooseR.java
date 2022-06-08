@@ -4,7 +4,8 @@
  * modified     20220527
  * date         20220524
  * @filename    NChooseR.java
- * @author      Alvin Chan, Evan Shizas
+ * @author      Alvin Chan
+ * @author      Evan Shizas
  * @version     1.0.0
  * @see         A15 - Recursion
  */

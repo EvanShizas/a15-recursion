@@ -4,7 +4,8 @@
  * modified     20220527
  * date         20220524
  * @filename    Fibonacci.java
- * @author      Alvin Chan, Evan Shizas
+ * @author      Alvin Chan
+ * @author      Evan Shizas
  * @version     1.0.0
  * @see         A15 - Recursion
  */
@@ -76,7 +77,7 @@ public class Fibonacci extends JFrame {
 		JTextArea fibInfo = new JTextArea();
 		fibInfo.setWrapStyleWord(true);
 		fibInfo.setLineWrap(true);
-		fibInfo.setText("The first ten fibonocci numbers are listed as follows: 0, 1, 1, 2, 3, 5, 8, 13, 21...");
+		fibInfo.setText("The first ten fibonacci numbers are listed as follows: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34...");
 		fibInfo.setFont(new Font("Tahoma", Font.ITALIC, 15));
 		fibInfo.setEditable(false);
 		fibInfo.setBackground(Color.WHITE);
